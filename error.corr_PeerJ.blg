@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: error.corr_PeerJ.aux
+The style file: model2-names.bst.bst
+Database file #1: formatted.bib.bib
+I was expecting a `,' or a `}'---line 16905 of file formatted.bib.bib
+ : 
+ : @article{THORNHILL:1983vi,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 35869 of file formatted.bib.bib
+ : 
+ : @article{Gibbons:2009fh,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Sammeth:2009jx"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty journal in RALanguageandEn:wf
+You've used 39 entries,
+            2990 wiz_defined-function locations,
+            875 strings with 17050 characters,
+and the built_in function-call counts, 41502 in all, are:
+= -- 2523
+> -- 3142
+< -- 9
++ -- 1188
+- -- 1149
+* -- 5553
+:= -- 6182
+add.period$ -- 116
+call.type$ -- 39
+change.case$ -- 578
+chr.to.int$ -- 39
+cite$ -- 40
+duplicate$ -- 2492
+empty$ -- 2187
+format.name$ -- 1276
+if$ -- 7188
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 645
+newline$ -- 209
+num.names$ -- 156
+pop$ -- 981
+preamble$ -- 1
+purify$ -- 539
+quote$ -- 0
+skip$ -- 519
+stack$ -- 0
+substring$ -- 1205
+swap$ -- 2461
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 351
+warning$ -- 1
+while$ -- 178
+width$ -- 0
+write$ -- 553
+(There were 2 error messages)
