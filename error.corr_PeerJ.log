@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 08:02
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 10:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,52 +530,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
 (./error.corr_PeerJ.bbl [15] [16] [17] [18])
 
-LaTeX Font Warning: Font shape `OT1/cmss/bx/sc' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 250.
-
-[19]
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 305
-.
-LaTeX Font Info:    No file OMScmss.fd. on input line 305.
-
-
-LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbar' on input line 305.
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-Overfull \hbox (49.28038pt too wide) in paragraph at lines 356--358
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[20]
-
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 390.
-[21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 390.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
+[19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
  (./error.corr_PeerJ.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 390.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 390.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 246.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 246.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 390.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
  ) 
 Here is how much of TeX's memory you used:
- 8103 strings out of 494004
- 114643 string characters out of 3150890
- 230205 words of memory out of 3000000
- 11310 multiletter control sequences out of 15000+200000
+ 7913 strings out of 494004
+ 112186 string characters out of 3150890
+ 191612 words of memory out of 3000000
+ 11128 multiletter control sequences out of 15000+200000
  10260 words of font info for 36 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 31i,7n,49p,1186b,1629s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1186b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on error.corr_PeerJ.pdf (21 pages).
+Output written on error.corr_PeerJ.pdf (19 pages).

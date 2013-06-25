@@ -202,7 +202,7 @@ Interesting, \textsc{Seecer}, the only error correction method designed for RNAs
 In addition to this, how error correction interacts with the more complicated reconstructions, splice variants for instance, is an outstanding question. Indeed, reads traversing a splicing junction may be particularly problematic for error correctors, as coverage on opposite sides of the junction may be different owing to differences in isoform expression, which could masquerade as error.  Alternative splicing is known to negatively affect both assembly and mapping \citep{Vijay:2012gy,Sammeth:2009jx,Pyrkosz:2013tm}, and given that many computational strategies are shared between these techniques and error correction suggests that similarly, error correction should be affected by splicing.  As such, considering this potential source of error in error correction should be considered during error correction. Computational strategies that distinguish these alternative splicing events from real error are currently being developed.   
  
 \section*{Methods}
-Because we were interested in understanding the effects of error correction on the assembly of vertebrate transcriptome assembly, we elected to use coding sequences greater than 200nt in length from the \textit{Mus musculus} reference genome (GRCm37.71), available at \url{http://uswest.ensembl.org/Mus_musculus/Info/Index}.  Thirty million 100nt paired-end Illumina reads were simulated with the program \textsc{Flux Simulator} \citep{Griebel:2012ti} which attempts to simulate a realistic Illumina RNAseq dataset, incorporating biases related to library construction and sequencing. Thirty million PE reads were simulated as this sequencing effort was suggested to be optimal for studies of whole-animal non-model transcriptomes \citep{Francis:2013gc}. Sequencing error increased along the length of the read, as per program default. Patterns of gene expression were modeled to follow patterns typically seen in studies of Eukaryotic gene expression. The \textsc{Flux Simulator} requires the use of a parameter file, which is included in Supporting Information S0.  \\
+Because we were interested in understanding the effects of error correction on the assembly of vertebrate transcriptome assembly, we elected to use coding sequences greater than 200nt in length from the \textit{Mus musculus} reference genome (GRCm37.71), available at \url{http://uswest.ensembl.org/Mus_musculus/Info/Index}.  Thirty million 100nt paired-end Illumina reads were simulated with the program \textsc{Flux Simulator} \citep{Griebel:2012ti} which attempts to simulate a realistic Illumina RNAseq dataset, incorporating biases related to library construction and sequencing. Thirty million PE reads were simulated as this sequencing effort was suggested to be optimal for studies of whole-animal non-model transcriptomes \citep{Francis:2013gc}. Sequencing error increased along the length of the read, as per program default. Patterns of gene expression were modeled to follow patterns typically seen in studies of Eukaryotic gene expression. The \textsc{Flux Simulator} requires the use of a parameter file, which is available at \url{https://gist.github.com/macmanes/5859902}.  \\
 
 \noindent
 In addition to analyses conducted on a simulated dataset, we used the well-characterized mouse dataset included with the Trinity software package (\url{http://sourceforge.net/projects/trinityrnaseq/files/misc/MouseRNASEQ/mouse_SS_rnaseq.50M.fastqs.tgz/download}) to validate the observed patterns using an empirically derived dataset.  To enable comparison between the simulated and empiric dataset, we randomly selected a subset of this dataset consisting of 30 million PE reads. \\
@@ -214,10 +214,10 @@ Quality metrics for simulated and experimental raw reads were generated using th
 Error correction was performed on both simulated and empirical datasets using four different error correction software packages. These included \textsc{Seecer}, \textsc{AllPathsLG} error correction, \textsc{Reptile}, and \textsc{Sga}. These specific methods were chosen in an attempt to cover the breadth of analytical methods currently used for error correction. Indeed, each of these programs implements a different computational strategy for error correction, and therefore their success, and ultimate effects on assembly accuracy are expected to vary.  In addition, several of these packages have been included in a recent review of error correction methods, with one of these (\textsc{Reptile}) having been shown to be amongst the most accurate \citep{Yang:2013ck}.  \\
 
 \noindent
-Though error correction has been a part of the \textsc{AllPathsLG} genome assembler for the past several versions, only recently has a stand-along version of their python-based error correction module (\url{http://www.broadinstitute.org/software/allpaths-lg/blog/?p=577}), which leverages several of the AllPaths subroutines, become available.  With exception to the minimum kmer frequency, which was set to 0 (unique kmers retained in the final corrected dataset), the \textsc{AllPathsLG} error correction software was run using default settings for correcting errors contained within the raw sequencing reads.  Code for running the program is included in SI text S2.   \\
+Though error correction has been a part of the \textsc{AllPathsLG} genome assembler for the past several versions, only recently has a stand-along version of their python-based error correction module (\url{http://www.broadinstitute.org/software/allpaths-lg/blog/?p=577}), which leverages several of the AllPaths subroutines, become available.  With exception to the minimum kmer frequency, which was set to 0 (unique kmers retained in the final corrected dataset), the \textsc{AllPathsLG} error correction software was run using default settings for correcting errors contained within the raw sequencing reads.  Code for running the program is available at \url{https://gist.github.com/macmanes/5859931}.   \\
 
 \noindent
-Error correction using the software package \textsc{Reptile} requires the optimization of several parameters via an included set of scripts, and therefore several runs of the program. To correct errors contained within the raw dataset, we set kmer size to 25 (\textit{KmerLen=25}), and the maximum error rate to 2\% (\textit{MaxErrRare=0.02}). Kmer=25 was selected to most closely match the kmer size used by the assembler \textsc{Trinity}. We empirically determined optimal values for \textit{T\_expGoodCnt} and \textit{T\_card} using multiple independent program executions.  \textsc{Reptile} requires the use of a parameter file, which is included in SI text S3.   \\
+Error correction using the software package \textsc{Reptile} requires the optimization of several parameters via an included set of scripts, and therefore several runs of the program. To correct errors contained within the raw dataset, we set kmer size to 25 (\textit{KmerLen=25}), and the maximum error rate to 2\% (\textit{MaxErrRare=0.02}). Kmer=25 was selected to most closely match the kmer size used by the assembler \textsc{Trinity}. We empirically determined optimal values for \textit{T\_expGoodCnt} and \textit{T\_card} using multiple independent program executions.  \textsc{Reptile} requires the use of a parameter file, which is available at \url{https://gist.github.com/macmanes/5859947}.   \\
 
 \noindent
 The software package \textsc{SGA} was also used to correct simulated and empiric Illumina reads. This program, like \textsc{AllPaths-LG}, allows its error correction module to be applied independent of the rest of the pipeline. These preliminary steps, preprocessing, indexing, and error correction were run with default settings, with exception to the kmer size, which was set to 25.  \\
@@ -226,7 +226,7 @@ The software package \textsc{SGA} was also used to correct simulated and empiric
 Lastly, the software package \textsc{Seecer} was used to error correct the raw read dataset.  The software package is fundamentally different than the other packages, in that it was designed for with RNAseq reads in mind. We ran \textsc{Seecer} using default settings.  \\
  
 \noindent
-Transcriptome assemblies were generated using the default settings of the program \textsc{Trinity} \citep{Grabherr:2011jb}.  Code for running \textsc{Trinity} is included in SI text S5. Assemblies were evaluated using a variety of different metrics. First, \textsc{Blast+} \citep{Camacho:2009fc} was used to match assembled transcripts to their reference.  \textsc{TransDecoder} (\url{http://transdecoder.sourceforge.net/}) was used to identify full-length transcripts. For analysis of nucleotide mismatch, we elected to analyze a 'high-confidence' portion of out dataset as multiple hits and low quality BLAT matches could significantly bias results. To subset the data, we chose to include only contigs whose identity was $\geq$ 99\% similar to, and covering at least 90\% of the reference sequence.  The program \textsc{Blat} \citep{Kent:2002jd} was used to identify and count nucleotide mismatches between reconstructed transcripts in the high-confidence datasets and their corresponding reference.  Differences were visualized using the program R. \\
+Transcriptome assemblies were generated using the default settings of the program \textsc{Trinity} \citep{Grabherr:2011jb}.  Code for running \textsc{Trinity} is available at \url{https://gist.github.com/macmanes/5859956}. Assemblies were evaluated using a variety of different metrics. First, \textsc{Blast+} \citep{Camacho:2009fc} was used to match assembled transcripts to their reference.  \textsc{TransDecoder} (\url{http://transdecoder.sourceforge.net/}) was used to identify full-length transcripts. For analysis of nucleotide mismatch, we elected to analyze a 'high-confidence' portion of out dataset as multiple hits and low quality BLAT matches could significantly bias results. To subset the data, we chose to include only contigs whose identity was $\geq$ 99\% similar to, and covering at least 90\% of the reference sequence.  The program \textsc{Blat} \citep{Kent:2002jd} was used to identify and count nucleotide mismatches between reconstructed transcripts in the high-confidence datasets and their corresponding reference.  Differences were visualized using the program R. \\
 
 \subsection*{Conclusions}
 To evaluate the effects of correction of sequencing error on assembly accuracy, we generated a simulated Illumina dataset, which consisted of 30M paired-end reads.  In addition, we applied the selected error correction strategy to an empirically derived \textit{Mus musculus} dataset. We attempted error correction using four popular error correction software packages, and evaluated their effect on assembly.  Though originally developed with genome sequencing in mind, we found that all tested methods do correct mRNAseq reads, and increase assembly accuracy, though \textsc{Reptile} appeared to have the most favorable effect. This study demonstrates the utility of error correction, and proposes that it become a routine step in the processing of Illumina sequence data. \\
@@ -239,150 +239,6 @@ This paper was greatly improved by suggestions from members of the Eisen Lab, an
 \singlespacing
 \bibliography{formatted.bib}
 \bibliographystyle{model2-names.bst}
-
-
-
-\section*{Supporting Information}
-\vspace{8mm}
-\noindent
-\textbf{\large{S0: .par file needed to run \textsc{Flux Simulator}}}
-\normalsize
-\begin{lstlisting}
-################################################File locations
-
-REF_FILE_NAME Mus.gtf
-GEN_DIR genomes/mus/
-
-###################################################Expression
-
-NB_MOLECULES 5000000
-TSS_MEAN 50
-POLYA_SCALE 100
-POLYA_SHAPE 1.5
-EXPRESSION_K -0.1
-EXPRESSION_X0	14500.0
-EXPRESSION_X1	9.025E9
-###############################################Fragmentation
-
-FRAGMENTATION YES
-FRAG_SUBSTRATE RNA
-FRAG_METHOD UR
-FRAG_UR_ETA 350
-FRAG_UR_D0 100
-RTRANSCRIPTION YES
-RT_MOTIF default
-RT_PRIMER RH
-
-
-#########################################################PCR
-
-PCR_DISTRIBUTION default
-GC_MEAN NaN
-PCR_PROBABILITY 0.05
-FILTERING YES
-SIZE_DISTRIBUTION N(400,100)
-
-#################################################Sequencing
-
-READ_NUMBER 60000000
-READ_LENGTH 100
-PAIRED_END YES 
-FASTA YES
-GEN_DIR genomes/mus
-ERR_FILE 76
-UNIQUE_IDS YES
-\end{lstlisting}
-
-
-\vspace{8mm}
-\noindent
-\textbf{\large{S1: Code to remove reads where sequence length does not equal quality length}}
-\normalsize
-
-\begin{lstlisting}
-cat test.fastq | awk 'BEGIN{OFS="\n"} { 
-a[NR % 4] = $0; 
-if(NR % 4 == 0 && length(a[2]) == length(a[0])){
-print a[1],a[2],a[3],a[0] 
-}
-}' > sim.fastq
-\end{lstlisting}
-
-
-\vspace{8mm}
-\noindent
-\textbf{\large{S2: Code for \textsc{AllPathsLG} error correction}}
-\normalsize
-
-\lstset{language=Bash} 
-\begin{lstlisting}
-~/ErrorCorrectReads.pl \
-MAX_MEMORY_GB= 30 THREADS= 8 PHRED_ENCODING= 33 PAIRED_READS_A_IN= \
-PAIRED_READS_B_IN=  UNPAIRED_READS_IN= sim.fastq \
-FE_MAX_KMER_FREQ_TO_MARK= 0 EC_K= 24 HAPLOIDIFY= True FILL_FRAGMENTS= \
-False FF_K=28 FE_USE_KMER_SPECTRUM=TRUE READS_OUT=corr
-\end{lstlisting}
-
-
-
-
-
-
-
-\vspace{8mm}
-
-\noindent
-\textbf{\large{S3: Parameter file for \textsc{Reptile} error correction of simulated reads}}
-\normalsize
-
-\lstset{language=Bash} 
-\begin{lstlisting}
-InFaFile          data/right.fa
-IQFile            data/right.q
-OErrFile          data/right.reptile.err
-QFlag             1
-IFlag             1
-
-
-BatchSize           5000000
-KmerLen              13
-hd_max               1
-Step                 11
-ExpectSearch         4
-T_ratio              0.5
-
-######## The following parameters need to be tuned to specific dataset ########
-
-MaxErrRate            0.02
-QThreshold            73
-MaxBadQPerKmer        8
-Qlb                   66
-T_expGoodCnt          112
-T_card                6
-\end{lstlisting}
-\vspace{8mm}
-
-
-
-
-\vspace{8mm}
-\noindent
-\textbf{\large{S4 Code for \textsc{Trinity} assembly}}
-\normalsize
-
-
-\begin{lstlisting}
-~/trinityrnaseq_r2013-02-25/Trinity.pl --seqType fq --JM 30G \
---single *.fastq --full_cleanup --CPU 8
-\end{lstlisting}
-
-
-
-
-
-
-
-
 
 
 \end{document}
