@@ -13,48 +13,47 @@ I was expecting a `,' or a `}'---line 35869 of file formatted.bib.bib
  : @article{Gibbons:2009fh,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Sammeth:2009jx"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty journal in RALanguageandEn:wf
-You've used 39 entries,
+You've used 40 entries,
             2990 wiz_defined-function locations,
-            875 strings with 17050 characters,
-and the built_in function-call counts, 41502 in all, are:
-= -- 2523
-> -- 3142
-< -- 9
-+ -- 1188
-- -- 1149
-* -- 5553
-:= -- 6182
-add.period$ -- 116
-call.type$ -- 39
-change.case$ -- 578
-chr.to.int$ -- 39
-cite$ -- 40
-duplicate$ -- 2492
-empty$ -- 2187
-format.name$ -- 1276
-if$ -- 7188
+            880 strings with 17232 characters,
+and the built_in function-call counts, 42074 in all, are:
+= -- 2571
+> -- 3152
+< -- 10
++ -- 1192
+- -- 1152
+* -- 5606
+:= -- 6265
+add.period$ -- 119
+call.type$ -- 40
+change.case$ -- 584
+chr.to.int$ -- 40
+cite$ -- 41
+duplicate$ -- 2537
+empty$ -- 2238
+format.name$ -- 1280
+if$ -- 7298
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 645
-newline$ -- 209
-num.names$ -- 156
-pop$ -- 981
+missing$ -- 653
+newline$ -- 214
+num.names$ -- 160
+pop$ -- 995
 preamble$ -- 1
-purify$ -- 539
+purify$ -- 544
 quote$ -- 0
-skip$ -- 519
+skip$ -- 533
 stack$ -- 0
-substring$ -- 1205
-swap$ -- 2461
+substring$ -- 1247
+swap$ -- 2489
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 351
+type$ -- 360
 warning$ -- 1
-while$ -- 178
+while$ -- 183
 width$ -- 0
-write$ -- 553
+write$ -- 567
 (There were 2 error messages)

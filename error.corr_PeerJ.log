@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 13:55
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 14:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -425,14 +425,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--131
 
  []
 
-
+[7]
 Underfull \hbox (badness 10000) in paragraph at lines 132--134
 
  []
 
-[7]
 File: FigZ.eps Graphic file (type eps)
- <FigZ.eps>
+<FigZ.eps>
 Underfull \hbox (badness 10000) in paragraph at lines 143--145
 
  []
@@ -447,12 +446,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--151
 
  []
 
-
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 177--179
 
  []
 
-[9]
+
 Underfull \hbox (badness 10000) in paragraph at lines 181--182
 
  []
@@ -475,10 +474,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 200--202
  []
 
 
-Package natbib Warning: Citation `Sammeth:2009jx' on page 12 undefined on input
- line 204.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 207--208
 
  []
@@ -498,12 +493,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 215--217
 
  []
 
-
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 218--220
 
  []
 
-[13]
+
 Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
@@ -528,12 +523,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
  []
 
-(./error.corr_PeerJ.bbl [15] [16] [17])
-
-Package natbib Warning: There were undefined citations.
-
+(./error.corr_PeerJ.bbl [15] [16] [17] [18])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
-[18]
+ [19]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
  (./error.corr_PeerJ.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 246.
@@ -545,12 +537,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
  ) 
 Here is how much of TeX's memory you used:
- 7913 strings out of 494004
- 112180 string characters out of 3150890
- 191612 words of memory out of 3000000
- 11128 multiletter control sequences out of 15000+200000
+ 7915 strings out of 494004
+ 112230 string characters out of 3150890
+ 191639 words of memory out of 3000000
+ 11130 multiletter control sequences out of 15000+200000
  10260 words of font info for 36 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1186b,490s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1186b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on error.corr_PeerJ.pdf (18 pages).
+Output written on error.corr_PeerJ.pdf (19 pages).
