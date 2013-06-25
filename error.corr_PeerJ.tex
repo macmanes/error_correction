@@ -1,0 +1,388 @@
+\documentclass[11pt]{article}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{lineno}
+%\usepackage{amssymb}
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, citecolor=darkgreen}
+\usepackage{natbib}
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{listings}
+\renewcommand{\familydefault}{\sfdefault}
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\begin{document}
+\begin{flushleft}
+
+{\Large
+\textbf{Improving transcriptome assembly through error correction of high-throughput sequence reads}
+}
+\\ 
+\vspace{4mm}
+
+\noindent
+Matthew D MacManes$^{1}$$^\ast$ and
+Michael B. Eisen$^{1,2}$ \\
+\vspace{5mm}
+
+\bf{1} \textnormal{UC Berkeley. California Institute of Quantitative Biology, Berkeley, CA, USA} \\
+\bf{2} \textnormal{Howard Hughes Medical Institute} \\
+\vspace{2mm}
+ 
+\bf{$\ast$} \textnormal{Corresponding author: \href{mailto:macmanes@gmail.com}{macmanes@gmail.com}, Twitter: \href{https://twitter.com/PeroMHC}{$@$PeroMHC}}
+\end{flushleft}
+\vspace{4mm}
+
+\begin{abstract}
+\noindent
+The study of functional genomics--particularly in non-model organisms has been dramatically improved over the last few years by use of transcriptomes and RNAseq. While these studies are potentially extremely powerful, a computationally intensive procedure--the \textit{de novo} construction of a reference transcriptome must be completed as a prerequisite to further analyses. The accurate reference is critically important as all downstream steps, including estimating transcript abundance are critically dependent on the construction of an accurate reference. Though a substantial amount of research has been done on assembly, only recently have the pre-assembly procedures been studied in detail. Specifically, several stand-alone error correction modules have been reported on, and while they have shown to be effective in reducing errors at the level of sequencing reads, how error correction impacts assembly accuracy is largely unknown. Here, we show via use of a simulated and empiric dataset, that applying error correction to sequencing reads has significant positive effects on assembly accuracy, and should be applied to all datasets. 
+\end{abstract}
+
+\linenumbers
+
+\section*{Introduction}
+
+\doublespacing
+\noindent
+The popularity of genome enabled biology has increased dramatically, particularly for researchers studying non-model organisms, during the last few years.  For many, the primary goal of these works is to better understand the genomic underpinnings of adaptive \citep{Linnen:2013ir,Narum:2013kc} or functional \citep{MunozMerida:2013dw,Hsu:2012dg} traits. While extremely promising, the study of functional genomics in non-model organisms typically requires the generation of a reference transcriptome to which comparisons are made.  Although compared to genome assembly \citep{Bradnam:2013uu,Earl:2011gt}, transcriptome assembly is less challenging, significant hurdles still exist (see \cite{Francis:2013gc,Vijay:2012gy,Pyrkosz:2013tm} for examples of the types of challenges). \\
+
+\noindent
+The process of transcriptome assembly is further complicated by the error-prone nature of high-throughput sequencing reads.  With regards to Illumina sequencing, error is distributed non-randomly over the length of the read, with the rate of error increasing from 5' to 3' end \citep{Liu:2012iv}. These errors are overwhelmingly substitution errors \citep{Yang:2013ck}, with the global error rate being between 1\% and 3\%.    While beyond the focus of this paper, the accuracy of \textit{de novo} transcriptome assembly, sequencing errors may have important implications for SNP calling, and the estimation of nucleotide polymorphism and the estimation of transcript abundance. \\
+
+\noindent
+With regards to assembly, sequencing read error has both technical and 'real-world' importance. Because most transcriptome assemblers use a \textit{de Bruijn} graph representation of sequence connectedness, sequencing error can dramatically increase the size and complexity of the graph, and thus increase both RAM requirements and runtime \citep{Conway:2011iv,Pell:2012id}. More important, however, are their effects on assembly accuracy. Before the current work, sequence assemblers were thought to efficiently handle error given sufficient sequence coverage. While this is largely true, sequence error may lead to assembly error at the nucleotide level despite high coverage, and therefore should be corrected, if possible. In addition, there may be technical, biological, or financial reasons why extremely deep coverage may not be possible, therefore, a more general solution is warranted.  \\ 
+
+\noindentWhile the vast majority of computational genomics research has focused on either assembly \citep{Chaisson:2004kf,Miller:2010gxa,Earl:2011gt,Bradnam:2013uu} or transcript abundance estimation \citep{Soneson:2013fr,Marioni:2008bg,Mortazavi:2008jj,Pyrkosz:2013tm}, up until recently, research regarding the dynamics of pre-assembly procedures has largely been missing. However, error correction has become more popular, with several software packages becoming available for error correction-- e.g.  \textsc{AllPathsLG} error correction \citep{Gnerre:2011fd}, \textsc{Quake} \citep{Kelley:2010kg}, \textsc{Echo} \citep{Kao:2011bx}, \textsc{Reptile} \citep{Yang:2010kv}, SOAP\textit{denovo} \citep{Liu:2011ez}, \textsc{SGA} \citep{Simpson:2010fd} and \textsc{Seecer} \citep{Le:2013dy}.  While these packages have largely focused on the error correction of genomic reads (with exception to \textsc{Seecer}, which was designed for RNAeq reads), they may likely be used as effectively for RNAseq reads.  \\ 
+
+\noindentRecently a review \citep{Yang:2013ck} evaluating several of these methods in their ability to correct genomic sequence read error was published. However, the application of these techniques to RNAseq reads, as well as an understanding of how error correction influences accuracy of the \textit{de novo} transcriptome assembly has not been evaluated. Here we aim to evaluate several of the available error correction methods. Though an understanding of the error correction process itself, specifically it's interaction with read coverage may be a useful exercise, our initial efforts described here, focus on the the effects of error correction on assembly, the resource which forms the basis of all downstream (e.g. differential expression, SNP calling) steps.  \\
+
+\noindent
+To accomplish this, we simulated 30 million paired-end Illumina reads and assembled uncorrected reads, as well as reads corrected by each of the evaluated correction methods, which were chosen to represent the breadth of computational techniques used for sequence read error correction.  Though we focus on the simulated dataset, we corroborate our findings through use of an empirically derived Illumina dataset.  For both datasets, we evaluate assembly content, number of errors incorporated into the assembly, and mapping efficiency in an attempt to understand the effects of error correction on assembly. Although Illumina is just one of the available high-throughput sequencing technologies currently available, we chose to limit our investigation to this single, most widely used technology, though similar investigations will become necessary as the sequencing technology evolves. \\
+
+\noindent
+Because the \textit{de novo} assembly is a key resource for all subsequent studies of gene expression and allelic variation, the production of an error-free reference is absolutely critical. Indeed, error in the reference itself will have potential impacts on the results of downstream analyses. These types of error may be particularly problematic in \textit{de novo} assemblies of non-model organisms, where experimental validation of sequence accuracy may be impossible. Though methods for the correction of sequencing reads have been available for the last few years, their adoption has been limited, seemingly because a demonstration of their effects has been lacking. Here, we show that error correction has a large relative effect on assembly quality, and therefore argue that it should become a routine part of workflow involved in processing Illumina mRNA sequence data. Though this initial work focuses on the results of error correction; arguably the most logical candidate for study, future work will attempt to gain a deeper understanding of error in the error correction process itself. \\
+
+\section*{Results}
+\noindent
+Thirty million 100nt paired-end (PE) reads were simulated using the program \textsc{Flux Simulator} \citep{Griebel:2012ti}.  Simulated reads were based on the coding portion of the \textit{Mus musculus} genome and included coverage of about 60k transcripts with average depth of 70X. Thirty million reads were simulated as this corresponds to the sequencing effort suggested by \citep{Francis:2013gc} as an appropriate effort, balancing coverage with the accumulation of errors, particularly in non-model animal transcriptomics.  These reads were qualitatively similar to several published datasets \citep{MacManes:2012bu,Chen:2011ba}. Sequence error was simulated to follow the well-characterized Illumina error profile \hyperlink{Figure 1}{Figure 1}.  Similarly, patterns of gene expressions were typical of many mammalian tissues \hyperlink{Figure 2}{Figure 2}, and follows a Poisson distribution with lambda=1 \citep{Auer:2011bt,Hu:2011cn,Jiang:2009bw}.  \\
+
+\textbf{\hypertarget{Figure 1}{Figure 1}} \\
+\centerline{\includegraphics[width=20.0\baselineskip]{newfig1.eps}}
+\noindent
+\begin{changemargin}{2cm}{2cm} 
+Figure1. The probability of error increases from the 5' to 3' end of the simulated sequencing reads. This error pattern is typical of Illumina sequencing.  
+\end{changemargin}
+
+\vspace{50mm}
+\textbf{\hypertarget{Figure 2}{Figure 2}} \\
+\centerline{\includegraphics[width=20.0\baselineskip]{newfig2.eps}}
+\begin{changemargin}{2cm}{2cm} 
+Figure 2.  The log transformed distribution of gene expression (FPKM) in the simulated dataset. This pattern is typical of many well characterized Eukaryotic tissue types, where the vast majority of genes are expressed moderately, with much fewer being expressed at a very high level. 
+\end{changemargin}
+\vspace{10mm}
+
+\noindent
+In addition to the simulated dataset, error correction was applied to an empirically derived Illumina dataset. This dataset consists of 50 million 76nt paired-end Illumina sequence reads from \textit{Mus musculus} mRNA, and is available as part of the Trinity software package \citep{Haas:jq,Grabherr:2011jb}. Because we were interested in comparing the two datasets, we randomly selected 30 million PE reads from the total 50 million reads for analyses.  The simulated read dataset is available at \url{https://www.dropbox.com/s/mp8fu0tijox69ki/simulated.reads.tar.gz}, while the empirical dataset is at \url{https://www.dropbox.com/s/rkl0ihqom28smb2/empiric.reads.tar.gz}.  [Of note, these datasets are to be moved to Dryad upon acceptance for publication. ]\\
+
+\noindent
+Error correction of the simulated and empiric datasets was completed using the \textsc{Seecer}, \textsc{AllPathsLG}, \textsc{SGA}, and \textsc{Reptile} error correction modules.  Details regarding the specific numbers of nucleotide changes and the proportion of reads being affected are detailed in (\hyperlink{Table 1}{Table 1}). Despite the fact that each software package attempted to solve the same basic problem, runtime considerations and results were quite different. \textsc{Trinity} assembly using the uncorrected simulated reads produced an assembly consisting of 78.43Mb, while the assembly of empirically derived reads was 74.24Mb.  \\
+
+\noindent
+\textbf{\hypertarget{Table 1}{Table 1}} \\
+\begin{center}
+    \begin{tabular}{ | l | l | l  | l | l |}
+    \hline
+    Simulated Dataset &  Total Reads & Num reads corr & Num  nt corr & Runtime  \\ \hline
+    Raw reads & 30M PE & n/a & n/a & n/a \\ \hline
+    \textsc{AllPathsLG} Corr. & 30M PE & ? & 139,592,317 & \ $\sim$ 8hrs \\ \hline
+    \textsc{Sga} Corr. & 30M PE & ? & 19,826,919 & \ $\sim$ 38 minutes \\ \hline
+    \textsc{Reptile} Corr. & 30M PE & 2,047,088 & 7,782,594 & \ $\sim$ 3 hours \\ \hline
+     \textsc{Seecer} Corr. & 30M PE & 8,782,350 & 14,033,709 & \ $\sim$ 5 hours \\ \hline
+       \end{tabular}
+\\
+\end{center}
+\noindent
+\begin{changemargin}{2cm}{2cm}
+Table 1. Number of raw sequencing reads, sequencing reads corrected, nucleotides (nt) corrected, and approximate runtime for each of the datasets. Note that neither \textsc{AllPaths} nor \textsc{Sga} provides information regarding the number of reads affected by the correction process. 
+\end{changemargin}
+
+\subsection*{Simulated Data}
+The high-confidence subset of the simulated uncorrected read assembly (n=38459 contigs) contained approximately 54k nucleotide mismatches (\hyperlink{Figure 3}{Figure 3}), corresponding to an mean error rate of 1.40 mismatches per contig (SD=7.38, max=178).  There did not appear to be an observe an obvious relationship between gene expression and the quality of the assembled transcripts (\hyperlink{Figure 4}{Figure 4}). While the rate of error is low, and indeed a testament to the general utility the \textit{de Bruijn} graph approach for sequence assembly, a dramatic improvement in accuracy would be worth pursuing, if possible.  \\
+
+\noindent
+Error correction of simulated reads using \textsc{Reptile} was a laborious process, with multiple (\textgreater 5) individual executions of the program required for parameter optimization. While each individual run was relatively quick, the total time exceed 12 hours, with manual intervention and decision making required at each execution.  Error correction resulted in the correction of 7.8M nucleotides (of a total $\sim$ 5B nucleotides contained in the sequencing read dataset). The resultant assembly contains an average of 1.23 mismatches per contig (SD=6.46, max=152).  The absolute number of errors decreased by $\sim$ 12\% (\hyperlink{Figure 3}{Figure 3}), which represents substantial improvement, particularly given that the high confidence subset of the Reptile-corrected assembly was the largest (n= 38670 contigs) of any of the methods(\hyperlink{Table 2}{Table 2}). \\
+
+\textbf{\hypertarget{Figure 3}{Figure 3}} \\
+\centerline{\includegraphics[width=12.0\baselineskip]{newfig2b.eps}}
+\begin{changemargin}{2cm}{2cm}
+\noindent
+Fig. 3. The global estimate of nucleotide mismatch decreases with error correction. The assembly done with \textsc{Reptile} corrected reads has approximately 10\% fewer errors than does the raw read assembly. 
+\end{changemargin}
+\vspace{10mm}
+
+
+\noindent
+\textsc{AllPathsLG} error correction software implemented by far the most aggressive correction, selected optimized parameters in an automated fashion, and did so within a 4 hour runtime.  \textsc{AllPathsLG} corrected over 140M nucleotides (again, out of a total $\sim$ 5B nucleotides contained in the sequencing reads), which resulted in a final assembly with 52706 nucleotide errors, corresponding to a decrease in error of approximately 2.7\%.   \\
+
+\noindent
+\textsc{Seecer}, is the only dedicated error-correction software package dedicated to RNAseq reads. Though \textsc{Seecer} is expected to handle RNAseq datasets better than the other correction programs, its results were disappointing. More than 14 million nucleotides were changed, affecting approximately 8.8M sequencing reads.  Upon assembly 54,574 nucleotide errors remained, which is equivalent to the number of errors contained in the assembly of uncorrected reads.   \\
+
+\textbf{\hypertarget{Figure 4}{Figure 4}} \\
+\centerline{\includegraphics[width=22.0\baselineskip]{Figure3.eps}}
+\begin{changemargin}{2cm}{2cm}
+\noindent
+Fig. 4. The number of nucleotide mismatches in a given contig is not related to gene expression. On average, in the assembly of uncorrected simulated reads, poorly expressed transcripts are no more error prone than are highly expressed transcripts.
+\end{changemargin}
+\vspace{10mm}
+
+\noindent 
+Lastly, \textsc{Sga} error correction was implemented on the simulated read dataset. \textsc{Sga}, is the fastest of all error correction modules, and finished correcting the simulated dataset in 38 minutes.  The software applied corrections to 19.8M nucleotides.  It's correction resulted in a modest improvement in error, with a reduction in error of approximately 4\% over the assembly of uncorrected errors.  \\
+ 
+\noindent
+Assembly content, aside from fine--scaled differences at the nucleotide level, as described above, were equivalent. Assemblies consisted of between 63,099 (\textsc{Reptile}) -- 65,468 (\textsc{Seecer}) putative transcripts greater than 200nt in length. N50 ranged from 2319 (\textsc{Reptile}) -- 2403nt (\textsc{Sga}).  The high-confidence portion of the assemblies ranged in size from 38407 contigs (\textsc{Seecer} assembly) to 38670 contigs in the \textsc{Reptile} assembly. Assemblies are detailed in \hyperlink{Table 2}{Table 2}, and available at \url{http://dx.doi.org/10.6084/m9.figshare.725715}. \\
+
+\noindent
+\textbf{\hypertarget{Table 2}{Table 2}} \\
+\begin{center}
+    \begin{tabular}{ | l | l | l  | l | l |}
+    \hline
+    Dataset & Error Corr. Method &  Raw Assembly Size & High Conf. Size  \\ \hline
+    Simulated Reads & & & \\ \hline
+     & None & 64491 (78Mb)&38459 (27Mb)  \\ \hline
+     & \textsc{AllPathsLG} &64682 (78Mb) & 38628 (27Mb) \\ \hline
+     & \textsc{Sga} &65059 (80Mb) & 38619 (27Mb)\\ \hline
+     & \textsc{Reptile} &63099 (73Mb) &38670 (25Mb)  \\ \hline
+     & \textsc{Seecer} &65468 (80Mb) & 38407 (27Mb) \\ \hline
+Empiric Reads & & & \\ \hline
+     & None &57338 (74Mb) & 21406 (24Mb)\\ \hline
+     & \textsc{AllPathsLG} &53884 (66Mb) & 21204 (23Mb)\\ \hline
+     & \textsc{Sga} &56707 (75Mb) & 21323 (24Mb) \\ \hline
+     & \textsc{Reptile} &53780 (60Mb) & 21850 (22Mb)\\ \hline
+     & \textsc{Seecer} &57311 (75Mb) & 21268 (24Mb) \\ \hline
+
+  \end{tabular}
+\\
+\end{center}
+\noindent
+\begin{changemargin}{2cm}{2cm}
+Table 2. Assembly details. High confidence datasets included only contigs that matched a single refernce, had sequence similarity \textgreater 99\%, and covered $\geq$ 90\% of length of reference. 
+\end{changemargin}
+
+\vspace{10mm}
+\noindent
+The proportion of reads mapping to each assembled dataset was equivalent as well, ranging from 92.44\% using raw reads to 94.89\% in \textsc{Sga} corrected reads.  Assemblies did not appear to differ in general patterns of contiguity,  (\hyperlink{Figure 5}{Figure 5}), though it should be noted that the most successful error corrector, \textsc{Reptile} had both the smallest assembly size \textit{and} largest number of high confidence contigs.  Taken together, these patterns suggest that error correction may have a significant effect on the structure of assembly; though its major effects are in enhancing resolution at the level of the nucleotide. Indeed, while we did not find, nor expect to find large differences in these global metrics, we do expect to see a significant effect on transcriptome based studies of marker development and population genetics, which are endeavors fundamentally linked to polymorphism, estimates of which can easily be confused by sequence error.    \\
+ 
+\subsection*{Empirical Data} 
+The high-confidence subset of the uncorrected empirical read assembly (n=21406 contigs) contained approximately 14.7k nucleotide mismatches, corresponding to an mean error rate of .68 mismatches per contig (SD=3.60 max=197).  Error correction procedures were implemented as described above. Indeed, the resultant pattens of correction were recapitulated. Error correction using \textsc{Reptile} were most favorable, and resulted in a reduction in the number of nucleotide errors by more than 10\%, to approximately 13k.  As above, the high-confidence portion of the \textsc{Reptile}-corrected dataset was the largest, with 21580 contigs, which is slightly larger that the assembly of uncorrected reads. Similar to what was observed in the simulated dataset, the high-confidence portion of the \textsc{AllPaths} corrected assembly was the smallest of any of the datasets, and contained the most errors. Of interest, the \textsc{Sga} correction performed well, similar to as in simulated reads, decreasing error by more than 9\%. \\
+
+\noindent
+Empirical assemblies contained between 53780 (\textsc{Reptile}) and 57338 (uncorrected assembly) contigs greater than 200nt in length.  N50 ranged from between 2412 (\textsc{Reptile}) and 2666nt (\textsc{Seecer}) in length.  As above, assemblies did not differ widely in their general content or structure; instead effects were limited to differences at nucleotide level. Assemblies are available at \url{http://dx.doi.org/10.6084/m9.figshare.725715}. \\
+
+\textbf{\hypertarget{Figure 5}{Figure 5}} \\
+\centerline{\includegraphics[width=20.0\baselineskip]{newFig4.eps}}
+
+\noindent
+\begin{changemargin}{2cm}{2cm}
+Fig. 5. Assembly contiguity did not vary significantly between assemblies of reads using the different error correction methods. Each error correction methods, as well as assembly of raw reads, produced an assembly that is dominated by full length (both start and stop codon present) or nearly full length assembled transcripts. 
+\end{changemargin}
+\vspace{10mm}
+
+\section*{Discussion}
+
+Though the methods for error correction have become increasingly popular within the last few years, their adoption in general genome or transcriptome assembly pipelines has lagged. One potential reason for this lag has been that their effects on assembly, particularly in RNAseq, has not been demonstrated. Here, we attempt to evaluate the effects of four different error correction algorithms on assembly- arguably the step upon which all downstream steps (e.g. differential expression, functiojnal genomics, SNP discovery, etc.) is based. We use both simulated and empirically derived data to show a significant effect of correction on assembly-- especially when using the error corrector \textsc{Reptile}. This particular method, while relatively labor intensive to implement, reduces error by more than 10\%, and results in a larger high-confidence subset relative to other methods.  \\
+
+
+\noindent
+Interesting, \textsc{Seecer}, the only error correction method designed for RNAseq reads, performed relatively poorly. In simulated reads, \textsc{Seecer} slightly increased the number of errors in the assembly, though with applied to empirically derived reads, results were more favorable, decreasing error by $\sim$ 3\%.  Though the effects of coverage on correction efficiency were not explored in the manuscript describing \textsc{Seecer} \citep{Le:2013dy}, their empirical dataset contained nearly 90 million sequencing reads, a size 3X larger than the one we analyze here.  Future work investigating the effects of coverage on error correction is necessary.  \\
+
+\noindent
+In addition to this, how error correction interacts with the more complicated reconstructions, splice variants for instance, is an outstanding question. Indeed, reads traversing a splicing junction may be particularly problematic for error correctors, as coverage on opposite sides of the junction may be different owing to differences in isoform expression, which could masquerade as error.  Alternative splicing is known to negatively affect both assembly and mapping \citep{Vijay:2012gy,Sammeth:2009jx,Pyrkosz:2013tm}, and given that many computational strategies are shared between these techniques and error correction suggests that similarly, error correction should be affected by splicing.  As such, considering this potential source of error in error correction should be considered during error correction. Computational strategies that distinguish these alternative splicing events from real error are currently being developed.   
+ 
+\section*{Methods}
+Because we were interested in understanding the effects of error correction on the assembly of vertebrate transcriptome assembly, we elected to use coding sequences greater than 200nt in length from the \textit{Mus musculus} reference genome (GRCm37.71), available at \url{http://uswest.ensembl.org/Mus_musculus/Info/Index}.  Thirty million 100nt paired-end Illumina reads were simulated with the program \textsc{Flux Simulator} \citep{Griebel:2012ti} which attempts to simulate a realistic Illumina RNAseq dataset, incorporating biases related to library construction and sequencing. Thirty million PE reads were simulated as this sequencing effort was suggested to be optimal for studies of whole-animal non-model transcriptomes \citep{Francis:2013gc}. Sequencing error increased along the length of the read, as per program default. Patterns of gene expression were modeled to follow patterns typically seen in studies of Eukaryotic gene expression. The \textsc{Flux Simulator} requires the use of a parameter file, which is included in Supporting Information S0.  \\
+
+\noindent
+In addition to analyses conducted on a simulated dataset, we used the well-characterized mouse dataset included with the Trinity software package (\url{http://sourceforge.net/projects/trinityrnaseq/files/misc/MouseRNASEQ/mouse_SS_rnaseq.50M.fastqs.tgz/download}) to validate the observed patterns using an empirically derived dataset.  To enable comparison between the simulated and empiric dataset, we randomly selected a subset of this dataset consisting of 30 million PE reads. \\
+
+\noindent
+Quality metrics for simulated and experimental raw reads were generated using the program \textsc{SolexaQA} \citep{Cox:2010ch}, and visualized using R \citep{RALanguageandEn:wf}. Patterns of gene expression were validated using the software packages \textsc{Bowtie2} \citep{Trapnell:2010kd} and \textsc{eXpress} \citep{Roberts:2012dh}. All computational work was performed on a 16-core 36GB RAM Linux Ubuntu workstation. \\
+
+\noindent
+Error correction was performed on both simulated and empirical datasets using four different error correction software packages. These included \textsc{Seecer}, \textsc{AllPathsLG} error correction, \textsc{Reptile}, and \textsc{Sga}. These specific methods were chosen in an attempt to cover the breadth of analytical methods currently used for error correction. Indeed, each of these programs implements a different computational strategy for error correction, and therefore their success, and ultimate effects on assembly accuracy are expected to vary.  In addition, several of these packages have been included in a recent review of error correction methods, with one of these (\textsc{Reptile}) having been shown to be amongst the most accurate \citep{Yang:2013ck}.  \\
+
+\noindent
+Though error correction has been a part of the \textsc{AllPathsLG} genome assembler for the past several versions, only recently has a stand-along version of their python-based error correction module (\url{http://www.broadinstitute.org/software/allpaths-lg/blog/?p=577}), which leverages several of the AllPaths subroutines, become available.  With exception to the minimum kmer frequency, which was set to 0 (unique kmers retained in the final corrected dataset), the \textsc{AllPathsLG} error correction software was run using default settings for correcting errors contained within the raw sequencing reads.  Code for running the program is included in SI text S2.   \\
+
+\noindent
+Error correction using the software package \textsc{Reptile} requires the optimization of several parameters via an included set of scripts, and therefore several runs of the program. To correct errors contained within the raw dataset, we set kmer size to 25 (\textit{KmerLen=25}), and the maximum error rate to 2\% (\textit{MaxErrRare=0.02}). Kmer=25 was selected to most closely match the kmer size used by the assembler \textsc{Trinity}. We empirically determined optimal values for \textit{T\_expGoodCnt} and \textit{T\_card} using multiple independent program executions.  \textsc{Reptile} requires the use of a parameter file, which is included in SI text S3.   \\
+
+\noindent
+The software package \textsc{SGA} was also used to correct simulated and empiric Illumina reads. This program, like \textsc{AllPaths-LG}, allows its error correction module to be applied independent of the rest of the pipeline. These preliminary steps, preprocessing, indexing, and error correction were run with default settings, with exception to the kmer size, which was set to 25.  \\
+
+\noindent
+Lastly, the software package \textsc{Seecer} was used to error correct the raw read dataset.  The software package is fundamentally different than the other packages, in that it was designed for with RNAseq reads in mind. We ran \textsc{Seecer} using default settings.  \\
+ 
+\noindent
+Transcriptome assemblies were generated using the default settings of the program \textsc{Trinity} \citep{Grabherr:2011jb}.  Code for running \textsc{Trinity} is included in SI text S5. Assemblies were evaluated using a variety of different metrics. First, \textsc{Blast+} \citep{Camacho:2009fc} was used to match assembled transcripts to their reference.  \textsc{TransDecoder} (\url{http://transdecoder.sourceforge.net/}) was used to identify full-length transcripts. For analysis of nucleotide mismatch, we elected to analyze a 'high-confidence' portion of out dataset as multiple hits and low quality BLAT matches could significantly bias results. To subset the data, we chose to include only contigs whose identity was $\geq$ 99\% similar to, and covering at least 90\% of the reference sequence.  The program \textsc{Blat} \citep{Kent:2002jd} was used to identify and count nucleotide mismatches between reconstructed transcripts in the high-confidence datasets and their corresponding reference.  Differences were visualized using the program R. \\
+
+\subsection*{Conclusions}
+To evaluate the effects of correction of sequencing error on assembly accuracy, we generated a simulated Illumina dataset, which consisted of 30M paired-end reads.  In addition, we applied the selected error correction strategy to an empirically derived \textit{Mus musculus} dataset. We attempted error correction using four popular error correction software packages, and evaluated their effect on assembly.  Though originally developed with genome sequencing in mind, we found that all tested methods do correct mRNAseq reads, and increase assembly accuracy, though \textsc{Reptile} appeared to have the most favorable effect. This study demonstrates the utility of error correction, and proposes that it become a routine step in the processing of Illumina sequence data. \\
+
+
+
+\section*{Acknowledgments}
+This paper was greatly improved by suggestions from members of the Eisen Lab, and from two named reviewers, C. Titus Brown and Mick Watson.  
+
+\singlespacing
+\bibliography{formatted.bib}
+\bibliographystyle{model2-names.bst}
+
+
+
+\section*{Supporting Information}
+\vspace{8mm}
+\noindent
+\textbf{\large{S0: .par file needed to run \textsc{Flux Simulator}}}
+\normalsize
+\begin{lstlisting}
+################################################File locations
+
+REF_FILE_NAME Mus.gtf
+GEN_DIR genomes/mus/
+
+###################################################Expression
+
+NB_MOLECULES 5000000
+TSS_MEAN 50
+POLYA_SCALE 100
+POLYA_SHAPE 1.5
+EXPRESSION_K -0.1
+EXPRESSION_X0	14500.0
+EXPRESSION_X1	9.025E9
+###############################################Fragmentation
+
+FRAGMENTATION YES
+FRAG_SUBSTRATE RNA
+FRAG_METHOD UR
+FRAG_UR_ETA 350
+FRAG_UR_D0 100
+RTRANSCRIPTION YES
+RT_MOTIF default
+RT_PRIMER RH
+
+
+#########################################################PCR
+
+PCR_DISTRIBUTION default
+GC_MEAN NaN
+PCR_PROBABILITY 0.05
+FILTERING YES
+SIZE_DISTRIBUTION N(400,100)
+
+#################################################Sequencing
+
+READ_NUMBER 60000000
+READ_LENGTH 100
+PAIRED_END YES 
+FASTA YES
+GEN_DIR genomes/mus
+ERR_FILE 76
+UNIQUE_IDS YES
+\end{lstlisting}
+
+
+\vspace{8mm}
+\noindent
+\textbf{\large{S1: Code to remove reads where sequence length does not equal quality length}}
+\normalsize
+
+\begin{lstlisting}
+cat test.fastq | awk 'BEGIN{OFS="\n"} { 
+a[NR % 4] = $0; 
+if(NR % 4 == 0 && length(a[2]) == length(a[0])){
+print a[1],a[2],a[3],a[0] 
+}
+}' > sim.fastq
+\end{lstlisting}
+
+
+\vspace{8mm}
+\noindent
+\textbf{\large{S2: Code for \textsc{AllPathsLG} error correction}}
+\normalsize
+
+\lstset{language=Bash} 
+\begin{lstlisting}
+~/ErrorCorrectReads.pl \
+MAX_MEMORY_GB= 30 THREADS= 8 PHRED_ENCODING= 33 PAIRED_READS_A_IN= \
+PAIRED_READS_B_IN=  UNPAIRED_READS_IN= sim.fastq \
+FE_MAX_KMER_FREQ_TO_MARK= 0 EC_K= 24 HAPLOIDIFY= True FILL_FRAGMENTS= \
+False FF_K=28 FE_USE_KMER_SPECTRUM=TRUE READS_OUT=corr
+\end{lstlisting}
+
+
+
+
+
+
+
+\vspace{8mm}
+
+\noindent
+\textbf{\large{S3: Parameter file for \textsc{Reptile} error correction of simulated reads}}
+\normalsize
+
+\lstset{language=Bash} 
+\begin{lstlisting}
+InFaFile          data/right.fa
+IQFile            data/right.q
+OErrFile          data/right.reptile.err
+QFlag             1
+IFlag             1
+
+
+BatchSize           5000000
+KmerLen              13
+hd_max               1
+Step                 11
+ExpectSearch         4
+T_ratio              0.5
+
+######## The following parameters need to be tuned to specific dataset ########
+
+MaxErrRate            0.02
+QThreshold            73
+MaxBadQPerKmer        8
+Qlb                   66
+T_expGoodCnt          112
+T_card                6
+\end{lstlisting}
+\vspace{8mm}
+
+
+
+
+\vspace{8mm}
+\noindent
+\textbf{\large{S4 Code for \textsc{Trinity} assembly}}
+\normalsize
+
+
+\begin{lstlisting}
+~/trinityrnaseq_r2013-02-25/Trinity.pl --seqType fq --JM 30G \
+--single *.fastq --full_cleanup --CPU 8
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+\end{document}
