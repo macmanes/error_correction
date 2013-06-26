@@ -42,6 +42,13 @@ Michael B. Eisen$^{1,2}$ \\
 
 \section*{Response to Reviewers Comments}
 
+\hspace{5mm} Please find the attached paper, which is a revision of manuscript number 2013:04:462:0:0. The manuscript has undergone substantial change in response to comments from Titus, Mick, and Gerard (Editor).  My reading of these comments suggested several major deficits, all of which have been addressed. We know use paired-end data, compare our results using simulated data to 'real' data, and make our data publicly available. In addition to these major changes (which required that all analyses be re-worked), we also address the other concerns, including justifying our choice of methods and data types. 
+
+The paper is much stronger as a result of this review process, and I hope you will find the changes satisfactory. \\
+
+\noindent
+Best, Matt MacManes 
+
 
 \begin{enumerate}
 
@@ -79,13 +86,18 @@ While I agree that expanding the paper to include different types of sequence da
 
 \item What's going on with splice variants? 
 \begin{addmargin}[2em]{2em}
-Good question... 
+Good question... As Titus notes in his review, the analysis of splice variants is tricky. I am quite interested in developing these methods, perhaps as part of a larger project (in connection with my work with Trinity). I think that attempting to dig into splicing here would be too much. I do note the issue in the discussion (line 230 -- ), as a potential issue with error correction. 
 \end{addmargin}
 
 
 \item Variable coverage and miscorrections? 
 \begin{addmargin}[2em]{2em}
+This is a really interesting point, and one I would have expected the developers of the various error correctors to have addressed-- They have not. I do see signs of low expressed contigs suffering from a less efficient correction (I suspect this is why Seecer did so poorly in my trials). Also, when looking at the number of corrections per read-- reads that are miscorrected tended to have more corrections than did appropriately corrected reads.
 \end{addmargin}
+\centerline{\includegraphics[width=30.0\baselineskip]{FigX.eps}}
+
+ 
+
 
 
 \item The use of real versus fake data. 

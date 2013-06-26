@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 15:35
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 17:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -341,12 +341,17 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 29.
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
 
-Overfull \hbox (4.12274pt too wide) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+
+Overfull \hbox (4.12274pt too wide) in paragraph at lines 73--74
 [][]$\OT1/cmtt/m/n/10.95 https : / / www . dropbox . com / s / mp8fu0tijox69ki 
 / simulated . reads . tar . gz$[][]\OT1/cmss/m/n/10.95 ). They
  []
@@ -358,21 +363,23 @@ File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 [1
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 153.
- [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 153.
+File: FigX.eps Graphic file (type eps)
+ <FigX.eps> [2]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 165.
+ [3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 165.
  (./Resp.to.review.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 153.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 153.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 153.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 165.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 165.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 8162 strings out of 494004
- 116383 string characters out of 3150890
- 203016 words of memory out of 3000000
- 11378 multiletter control sequences out of 15000+200000
+ 8165 strings out of 494004
+ 116403 string characters out of 3150890
+ 202016 words of memory out of 3000000
+ 11379 multiletter control sequences out of 15000+200000
  7747 words of font info for 28 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 33i,5n,32p,486b,474s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,5n,32p,636b,469s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on Resp.to.review.pdf (2 pages).
+Output written on Resp.to.review.pdf (3 pages).
