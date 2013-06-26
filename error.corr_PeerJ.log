@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 19:48
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  26 JUN 2013 11:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -498,12 +498,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--216
 
  []
 
-
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 217--219
 
  []
 
-[13]
+
 Underfull \hbox (badness 10000) in paragraph at lines 220--222
 
  []
@@ -528,9 +528,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
 
-(./error.corr_PeerJ.bbl [15] [16] [17])
+(./error.corr_PeerJ.bbl [15] [16] [17] [18])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
- [18] [19]
+ [19]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
  (./error.corr_PeerJ.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 245.
@@ -548,6 +548,6 @@ Here is how much of TeX's memory you used:
  11129 multiletter control sequences out of 15000+200000
  10260 words of font info for 36 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1186b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1186b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on error.corr_PeerJ.pdf (19 pages).
