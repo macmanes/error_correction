@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 19:13
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  25 JUN 2013 19:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -472,75 +472,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 185--187
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--196
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 197--199
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--202
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--205
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
+File: FigX.eps Graphic file (type eps)
+ <FigX.eps>
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 209--211
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--214
+Underfull \hbox (badness 10000) in paragraph at lines 211--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
+Underfull \hbox (badness 10000) in paragraph at lines 214--216
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--220
+Underfull \hbox (badness 10000) in paragraph at lines 217--219
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
 
  []
 
-(./error.corr_PeerJ.bbl [14] [15] [16] [17])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 234.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 234.
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--231
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+ []
+
+(./error.corr_PeerJ.bbl [15] [16] [17])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 245.
+ [18] [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 245.
  (./error.corr_PeerJ.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 234.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 234.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 245.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 245.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 234.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 245.
  ) 
 Here is how much of TeX's memory you used:
- 7911 strings out of 494004
- 112186 string characters out of 3150890
+ 7913 strings out of 494004
+ 112202 string characters out of 3150890
  191639 words of memory out of 3000000
- 11128 multiletter control sequences out of 15000+200000
+ 11129 multiletter control sequences out of 15000+200000
  10260 words of font info for 36 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1186b,520s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1186b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on error.corr_PeerJ.pdf (18 pages).
+Output written on error.corr_PeerJ.pdf (19 pages).

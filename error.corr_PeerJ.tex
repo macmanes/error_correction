@@ -184,9 +184,20 @@ Though the methods for error correction have become increasingly popular within 
 Interesting, \textsc{Seecer}, the only error correction method designed for RNAseq reads, performed relatively poorly. In simulated reads, \textsc{Seecer} slightly increased the number of errors in the assembly, though with applied to empirically derived reads, results were more favorable, decreasing error by $\sim$ 3\%.  Though the effects of coverage on correction efficiency were not explored in the manuscript describing \textsc{Seecer} \citep{Le:2013dy}, their empirical dataset contained nearly 90 million sequencing reads, a size 3X larger than the dataset we analyze here.  Future work investigating the effects of coverage on error correction is necessary.  \\
 
 \noindent
-In addition to this, how error correction interacts with the more complicated reconstructions, splice variants for instance, is an outstanding question. Indeed, reads traversing a splicing junction may be particularly problematic for error correctors, as coverage on opposite sides of the junction may be different owing to differences in isoform expression, which could masquerade as error.  Alternative splicing is known to negatively affect both assembly and mapping \citep{Vijay:2012gy,Sammeth:2009jx,Pyrkosz:2013tm}, and given that many computational strategies are shared between these techniques and error correction suggests that similarly, error correction should be affected by splicing.  As such, considering this potential source of error in error correction should be considered during error correction. Computational strategies that distinguish these alternative splicing events from real error are currently being developed.   
+In addition to this, how error correction interacts with the more complicated reconstructions, splice variants for instance, is an outstanding question. Indeed, reads traversing a splicing junction may be particularly problematic for error correctors, as coverage on opposite sides of the junction may be different owing to differences in isoform expression, which could masquerade as error.  Alternative splicing is known to negatively affect both assembly and mapping \citep{Vijay:2012gy,Sammeth:2009jx,Pyrkosz:2013tm}, and given that many computational strategies are shared between these techniques and error correction suggests that similarly, error correction should be affected by splicing.  As such, considering this potential source of error in error correction should be considered during error correction. Computational strategies that distinguish these alternative splicing events from real error are currently being developed.   \\
  
 \noindent
+The effects of read coverage on the efficiency of error correction are likely strong.  Aside from the suggestion that \textsc{Seecer's} relatively poor performance owed to low coverage data relative to the dataset tested during the development of that software \citep{Le:2013dy}, other supporting evidence exists.  Approximately 5\% or reads are miscorrected.  When looking at a sample (n=50000) of these reads, the contig to which that read maps is on average more lowly expressed than appropriately corrected reads (\hyperlink{Figure 4}{Figure 4}), which suggests that low coverage may reduce the efficiency of error correction. In addition, miscorrected reads, whose average expression is lower, tends to have more corrections than to the appropriately corrected reads (\hyperlink{Figure 5}{Figure 5}).
+
+\textbf{\hypertarget{Figure 5}{Figure 5}} \\
+\centerline{\includegraphics[width=20.0\baselineskip]{FigX.eps}}
+
+\noindent
+\begin{changemargin}{2cm}{2cm}
+Fig. 5. Reads miscorrected by \textsc{Reptile} have
+\end{changemargin}
+\vspace{10mm}
+
 
 
 \section*{Methods}
