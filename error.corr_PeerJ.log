@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  27 JUN 2013 10:19
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  27 JUN 2013 11:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -323,6 +323,14 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 41.
 
 
+LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10> not available
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 41.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 41.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 41.
+
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
 
  []
@@ -544,12 +552,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 256.
  ) 
 Here is how much of TeX's memory you used:
- 7915 strings out of 494004
- 112228 string characters out of 3150890
+ 7920 strings out of 494004
+ 112302 string characters out of 3150890
  191639 words of memory out of 3000000
- 11130 multiletter control sequences out of 15000+200000
- 10260 words of font info for 36 fonts, out of 3000000 for 9000
+ 11135 multiletter control sequences out of 15000+200000
+ 10729 words of font info for 38 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1186b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1342b,492s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on error.corr_PeerJ.pdf (19 pages).
