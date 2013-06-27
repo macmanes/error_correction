@@ -92,12 +92,28 @@ Good question... As Titus notes in his review, the analysis of splice variants i
 
 \item Variable coverage and miscorrections? 
 \begin{addmargin}[2em]{2em}
-This is a really interesting point, and one I would have expected the developers of the various error correctors to have addressed-- They have not. I do see signs of low expressed contigs suffering from a less efficient correction (I suspect this is why Seecer did so poorly in my trials). Also, when looking at the number of corrections per read-- reads that are miscorrected tended to have more corrections than did appropriately corrected reads. (line 232 -- )
+This is a really interesting point, and one I would have expected the developers of the various error correctors to have addressed-- They have not. I do see signs of low expressed reads suffering from a less efficient correction (I suspect this is why Seecer did so poorly in my trials).  Also, when looking at the number of corrections per read-- reads that are miscorrected tended to have more corrections than did appropriately corrected reads. (line 232 -- ). About 5\% of reads are miscorrected. I would expect that number to be reduced with higher coverage. 
 \end{addmargin}
 
- 
+\item Use other assemblers. 
+\begin{addmargin}[2em]{2em}
+This is a useful suggestion, and one which I would have loved to do. However, the extremely large amount of work that benchmarking many different assemblers is not feasible given the constraints on time for revisions. I would expect that the general patterns to hold, though the magnitude of difference may vary as some assemblers may be better/worse that Trinity at 'bubble popping'.
+\end{addmargin}
 
+\item Do I recommends these methods for genomic data? 
+\begin{addmargin}[2em]{2em}
+Yes, all (with exception to Seecer) have been developed for genomic reads, and should be even more efficient with those data, given even coverage.
+\end{addmargin}
 
+\item Add a pipeline? 
+\begin{addmargin}[2em]{2em}
+I have included a set of commands that should facilitate correction using Reptile-- \url{https://gist.github.com/macmanes/5878728}. 
+\end{addmargin}
+
+\item Why do errors remain? 
+\begin{addmargin}[2em]{2em}
+Good question-- it seems logical to assume that increasing coverage would solve this, but maybe not.. We do see a suggestion that splice isoforms really messes up error correction (and we know their effects on assembly all too well).  Also, it may be something to go with low complexity sequence causing spurious matching.. 
+\end{addmargin}
 
 \item Other issues. 
 \begin{addmargin}[2em]{2em}
@@ -112,5 +128,38 @@ This is a really interesting point, and one I would have expected the developers
 \end{addmargin}
 
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
