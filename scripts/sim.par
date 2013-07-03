@@ -1,0 +1,43 @@
+################################################File locations
+
+REF_FILE_NAME Mus.gtf
+GEN_DIR genomes/mus/
+
+###################################################Expression
+
+NB_MOLECULES 5000000
+TSS_MEAN 50
+POLYA_SCALE 100
+POLYA_SHAPE 1.5
+EXPRESSION_K -0.1
+EXPRESSION_X0  14500.0
+EXPRESSION_X1	9.025E9
+###############################################Fragmentation
+
+FRAGMENTATION YES
+FRAG_SUBSTRATE RNA
+FRAG_METHOD UR
+FRAG_UR_ETA 350
+FRAG_UR_D0 100
+RTRANSCRIPTION YES
+RT_MOTIF default
+RT_PRIMER RH
+
+
+#########################################################PCR
+
+PCR_DISTRIBUTION default
+GC_MEAN NaN
+PCR_PROBABILITY 0.05
+FILTERING YES
+SIZE_DISTRIBUTION N(400,100)
+
+#################################################Sequencing
+
+READ_NUMBER 60000000
+READ_LENGTH 100
+PAIRED_END YES 
+FASTA YES
+GEN_DIR genomes/mus
+ERR_FILE 76
+UNIQUE_IDS YES
