@@ -3,6 +3,8 @@ IQFile            data/both.q
 OErrFile          data/both.reptile.err
 QFlag             1
 IFlag             1
+OKmerHistFile           data/both.kmerhist
+QHistFile               data/both.qualhist
 
 
 BatchSize           5000000
@@ -11,12 +13,13 @@ hd_max              1
 Step                11
 ExpectSearch        4
 T_ratio             0.5
+MaxErrRate          0.02
+MaxBadQPerKmer      8
 
 ######## The following parameters need to be tuned to specific dataset ########
 
-MaxErrRate          0.02
+
 QThreshold          73
-MaxBadQPerKmer      8
 Qlb                 66
 T_expGoodCnt        112
 T_card              6

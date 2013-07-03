@@ -9,7 +9,31 @@ The scripts contained in this folder can be used to recreate analysis
 sim.par: This is the parameter file needed by the Flux Simulator. Running this should produce 30 million 100nt paired-end simulated Illumina reads
 subsampler.py: see above. Useful for subsampling an Illumina dataset
 allp.ec.sh: This is the code for running the AllPathsLG error correction module
-rept.config.script: This is the config file that reprile requires. Settings indicated by the test are to be optimized for each specific dataset, using instructions provided by the readme contined in the Reptile download
+rept.config.script: This is the config file that reprile requires. Settings indicated by the test are to be optimized for each specific dataset, using instructions provided below, or more comprehensively by the readme contined in the Reptile download
 trin.sh: this is the code for running a basic Trinity asssembly
 
 rept.pipeline.sh: This file contains a list of the commands that will allow for the production of Reptile error correcte reads.It includesa adaptor and quality trimming steps using Trimmomatic.
+
+
+####
+####Reptile Parameter Optimization
+####
+
+
+Step 0: set MaxBadQPerKmer to something between 7-10 for 100nt reads.
+Step 1: set kmer size. Perhaps best to match assembly kmer, though this is only a hunch.
+Step 2: set MaxErrRate to something low, perhaps 1% or 2%
+
+Step 3: run the seq-analy script
+
+Step 4: open the quality histogram file
+	Find lowest quality score such that the value in the third column is >= .80. Update  'QThreshold' setting
+	Highest quality score such that the value in the third column is <= .20. Update 'Qlb'
+
+Step 5: Rerun after changine those settings
+
+Step 6: open the k-mer histogram file
+	'T_expGoodCnt': set to two times the value of the first column in histogram where the third column is approximately .95
+	'T_card': set to the value of the first column in the histogram where value in the second column is the second peak (maximal) value.
+
+Step 7: 
