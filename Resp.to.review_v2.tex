@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{lineno}
+%\usepackage{amssymb}
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, citecolor=darkgreen}
+\usepackage{natbib}
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{scrextend}
+\renewcommand{\familydefault}{\sfdefault}
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\begin{document}
+\begin{flushleft}
+
+
+{\Large
+\textbf{Improving transcriptome assembly through error correction of high-throughput sequence reads}
+}
+\\ 
+\vspace{4mm}
+
+\noindent
+Matthew D MacManes$^{1}$$^\ast$ and
+Michael B. Eisen$^{1,2}$ \\
+\vspace{5mm}
+
+\bf{1} \textnormal{UC Berkeley. California Institute of Quantitative Biology, Berkeley, CA, USA} \\
+\bf{2} \textnormal{Howard Hughes Medical Institute} \\
+\vspace{2mm}
+ 
+\bf{$\ast$} \textnormal{Corresponding author: \href{mailto:macmanes@gmail.com}{macmanes@gmail.com}, Twitter: \href{https://twitter.com/PeroMHC}{$@$PeroMHC}}
+\end{flushleft}
+\vspace{4mm}
+
+
+
+\section*{Response to Editor Comments}
+
+\hspace{5mm} Please find the attached paper, which is a revision of manuscript number 2013:04:462:0:0. The manuscript has undergone the recommended changes, except what has been noted below. 
+
+\noindent
+Best, Matt MacManes 
+
+
+\begin{enumerate}
+
+\item About centralizing data and resources.
+
+\begin{addmargin}[2em]{2em}
+I have done a couple of things to speak to this issue. Figshare will not accept large files, so I cannot put the read data there. Prior to becoming aware of that limitation, I uploaded the assembly data. Those have a stable, permanent doi, and I think are OK to be left there. Apparently, identical resources should not have different doi's, so uploading them to Dryad is apparently improper. 
+
+\noindent
+The read data are uploaded to Dryad \url{http://dx.doi.org/10.5061/dryad.km540}, thought the link will not become live until paper is published.
+
+\noindent
+To make traversing a couple of difference resources easier for readers, I have made a README which contains all the various links and locations.  This readme is located (1) on github and (2) as supplementary material. I prefer the github resource, as scripts can be forked by users, modified, improved, etc. It is versioned, so record of the initial state is maintained.
+
+
+
+\end{addmargin}
+
+
+
+\item The dashes have been removed. 
+
+\item There are 2 supplementary figures, or at least I hope there are.. I did upload as such. 
+
+\begin{addmargin}[2em]{2em}
+I am happy to make them part of the main document, but I figured that 7 figures for a short MS is too much, and these are important only in that they characterize the simulated datasets, but do speak to findings.
+\end{addmargin}
+
+\item I have moved the fastQ files to Dryad. Link included in paper
+
+\item I added some text about what made Reptile laborious. In the not included README file, some instructions about how to select parameters if included. Still the best resource for this is the Reptile paper and download.
+
+\item I moved all the 'gist' scripts to a single folder on github, thus centralizing all those resources. 
+
+\end{enumerate}
+
+\end{document}

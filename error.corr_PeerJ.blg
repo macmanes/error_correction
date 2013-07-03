@@ -17,7 +17,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty journal in RALanguageandEn:wf
 You've used 41 entries,
             2990 wiz_defined-function locations,
-            885 strings with 17566 characters,
+            885 strings with 17567 characters,
 and the built_in function-call counts, 43360 in all, are:
 = -- 2640
 > -- 3266

@@ -1,18 +1,18 @@
 The empirical dataset can be recreated by running the subsampler.py script on the Trinity Mouse data available from http://sourceforge.net/projects/trinityrnaseq/files/misc/MouseRNASEQ/mouse_SS_rnaseq.50M.fastqs.tgz/download
-The simulated dataset is available at http://datadryad.org
+The simulated dataset is available at http://dx.doi.org/10.5061/dryad.km540
 
 
 All assemblies can be downoaded at http://dx.doi.org/10.6084/m9.figshare.725715
 
 The scripts contained in this folder can be used to recreate analysis
 
-sim.par: This is the parameter file needed by the Flux Simulator. Running this should produce 30 million 100nt paired-end simulated Illumina reads
-subsampler.py: see above. Useful for subsampling an Illumina dataset
-allp.ec.sh: This is the code for running the AllPathsLG error correction module
-rept.config.script: This is the config file that reprile requires. Settings indicated by the test are to be optimized for each specific dataset, using instructions provided below, or more comprehensively by the readme contined in the Reptile download
-trin.sh: this is the code for running a basic Trinity asssembly
+**sim.par: This is the parameter file needed by the Flux Simulator. Running this should produce 30 million 100nt paired-end simulated Illumina reads
+**subsampler.py: see above. Useful for subsampling an Illumina dataset
+**allp.ec.sh: This is the code for running the AllPathsLG error correction module
+**rept.config.script: This is the config file that reprile requires. Settings indicated by the test are to be optimized for each specific dataset, using instructions provided below, or more comprehensively by the readme contined in the Reptile download
+**trin.sh: this is the code for running a basic Trinity asssembly
 
-rept.pipeline.sh: This file contains a list of the commands that will allow for the production of Reptile error correcte reads.It includesa adaptor and quality trimming steps using Trimmomatic.
+**rept.pipeline.sh: This file contains a list of the commands that will allow for the production of Reptile error correcte reads.It includesa adaptor and quality trimming steps using Trimmomatic.
 
 
 ####
@@ -36,4 +36,4 @@ Step 6: open the k-mer histogram file
 	'T_expGoodCnt': set to two times the value of the first column in histogram where the third column is approximately .95
 	'T_card': set to the value of the first column in the histogram where value in the second column is the second peak (maximal) value.
 
-Step 7: 
+Step 7: Do the error correction using the reptile-omp script.
