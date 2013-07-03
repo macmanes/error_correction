@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  3 JUL 2013 07:50
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  3 JUL 2013 08:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -492,7 +492,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 219--220
 
  []
 
-
+[14]
 Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
@@ -507,7 +507,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--229
 
  []
 
-[14]
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 230--232
 
  []
@@ -522,12 +522,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 236--238
 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 239--241
 
  []
 
-
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 242--244
 
  []
@@ -537,9 +537,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
-[16] (./error.corr_PeerJ.bbl [17] [18] [19])
+[17] (./error.corr_PeerJ.bbl [18] [19] [20])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 258.
- [20]
+ [21]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 258.
  (./error.corr_PeerJ.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 258.
@@ -557,6 +557,6 @@ Here is how much of TeX's memory you used:
  11138 multiletter control sequences out of 15000+200000
  10729 words of font info for 38 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1345b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1345b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on error.corr_PeerJ.pdf (20 pages).
+Output written on error.corr_PeerJ.pdf (21 pages).
