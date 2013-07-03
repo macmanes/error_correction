@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  27 JUN 2013 11:47
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  3 JUL 2013 07:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -430,14 +430,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
 
-
+[6]
 Underfull \hbox (badness 10000) in paragraph at lines 117--119
 
  []
 
-[6]
 File: FigZ.eps Graphic file (type eps)
- <FigZ.eps>
+<FigZ.eps>
 Underfull \hbox (badness 10000) in paragraph at lines 128--130
 
  []
@@ -452,12 +451,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--136
 
  []
 
-
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 162--164
 
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
@@ -486,14 +485,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--190
 
 [11]
 File: Fig4final.eps Graphic file (type eps)
- <Fig4final.eps>
+ <Fig4final.eps> [12]
 File: FigX.eps Graphic file (type eps)
- <FigX.eps> [12]
+ <FigX.eps> [13]
 Underfull \hbox (badness 10000) in paragraph at lines 219--220
 
  []
 
-[13]
+
 Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
@@ -523,12 +522,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 236--238
 
  []
 
-
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 239--241
 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 242--244
 
  []
@@ -552,12 +551,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 258.
  ) 
 Here is how much of TeX's memory you used:
- 7920 strings out of 494004
- 112302 string characters out of 3150890
- 191639 words of memory out of 3000000
- 11135 multiletter control sequences out of 15000+200000
+ 7923 strings out of 494004
+ 112374 string characters out of 3150890
+ 191799 words of memory out of 3000000
+ 11138 multiletter control sequences out of 15000+200000
  10729 words of font info for 38 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1342b,514s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1345b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on error.corr_PeerJ.pdf (20 pages).

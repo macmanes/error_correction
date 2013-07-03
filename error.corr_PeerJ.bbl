@@ -1,4 +1,4 @@
-\begin{thebibliography}{40}
+\begin{thebibliography}{41}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -347,6 +347,22 @@
 \newblock \bibinfo{journal}{BMC Bioinformatics} \bibinfo{volume}{12},
   \bibinfo{pages}{354}.
 %Type = Article
+\bibitem[{Maccallum et~al.(2009)Maccallum, Przybylski, Gnerre, Burton,
+  Shlyakhter, Gnirke, Malek, McKernan, Ranade, Shea, Williams, Young, Nusbaum
+  and Jaffe}]{Maccallum:2009du}
+\bibinfo{author}{Maccallum, I.}, \bibinfo{author}{Przybylski, D.},
+  \bibinfo{author}{Gnerre, S.}, \bibinfo{author}{Burton, J.},
+  \bibinfo{author}{Shlyakhter, I.}, \bibinfo{author}{Gnirke, A.},
+  \bibinfo{author}{Malek, J.}, \bibinfo{author}{McKernan, K.},
+  \bibinfo{author}{Ranade, S.}, \bibinfo{author}{Shea, T.},
+  \bibinfo{author}{Williams, L.}, \bibinfo{author}{Young, S.},
+  \bibinfo{author}{Nusbaum, C.}, \bibinfo{author}{Jaffe, D.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{{ALLPATHS 2: small genomes assembled accurately and
+  with high continuity from short paired reads}}.
+\newblock \bibinfo{journal}{Genome Biology} \bibinfo{volume}{10},
+  \bibinfo{pages}{R103}.
+%Type = Article
 \bibitem[{MacManes and Lacey(2012)}]{MacManes:2012bu}
 \bibinfo{author}{MacManes, M.D.}, \bibinfo{author}{Lacey, E.A.},
   \bibinfo{year}{2012}.
@@ -366,11 +382,11 @@
 \newblock \bibinfo{journal}{Genome Research} \bibinfo{volume}{18},
   \bibinfo{pages}{1509--1517}.
 %Type = Article
-\bibitem[{Mu\~noz Merida et~al.(2013)Mu\~noz Merida, Gonzalez-Plaza, Canada,
+\bibitem[{Mu~noz Merida et~al.(2013)Mu~noz Merida, Gonzalez-Plaza, Canada,
   Blanco, Garcia-Lopez, Rodriguez, Pedrola, Sicardo, Hernandez, De~la Rosa,
   Belaj, Gil-Borja, Luque, Martinez-Rivas, Pisano, Trelles, Valpuesta and
   Beuzon}]{MunozMerida:2013dw}
-\bibinfo{author}{Mu\~noz Merida, A.}, \bibinfo{author}{Gonzalez-Plaza, J.J.},
+\bibinfo{author}{Mu~noz Merida, A.}, \bibinfo{author}{Gonzalez-Plaza, J.J.},
   \bibinfo{author}{Canada, A.}, \bibinfo{author}{Blanco, A.M.},
   \bibinfo{author}{Garcia-Lopez, M.d.C.}, \bibinfo{author}{Rodriguez, J.M.},
   \bibinfo{author}{Pedrola, L.}, \bibinfo{author}{Sicardo, M.D.},

@@ -15,45 +15,45 @@ I was expecting a `,' or a `}'---line 35869 of file formatted.bib.bib
 I'm skipping whatever remains of this entry
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty journal in RALanguageandEn:wf
-You've used 40 entries,
+You've used 41 entries,
             2990 wiz_defined-function locations,
-            880 strings with 17232 characters,
-and the built_in function-call counts, 42074 in all, are:
-= -- 2571
-> -- 3152
+            885 strings with 17566 characters,
+and the built_in function-call counts, 43360 in all, are:
+= -- 2640
+> -- 3266
 < -- 10
-+ -- 1192
-- -- 1152
-* -- 5606
-:= -- 6265
-add.period$ -- 119
-call.type$ -- 40
-change.case$ -- 584
-chr.to.int$ -- 40
-cite$ -- 41
-duplicate$ -- 2537
-empty$ -- 2238
-format.name$ -- 1280
-if$ -- 7298
++ -- 1235
+- -- 1194
+* -- 5789
+:= -- 6459
+add.period$ -- 122
+call.type$ -- 41
+change.case$ -- 603
+chr.to.int$ -- 41
+cite$ -- 42
+duplicate$ -- 2610
+empty$ -- 2297
+format.name$ -- 1325
+if$ -- 7516
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 653
-newline$ -- 214
-num.names$ -- 160
-pop$ -- 995
+missing$ -- 674
+newline$ -- 219
+num.names$ -- 164
+pop$ -- 1024
 preamble$ -- 1
-purify$ -- 544
+purify$ -- 562
 quote$ -- 0
-skip$ -- 533
+skip$ -- 546
 stack$ -- 0
-substring$ -- 1247
-swap$ -- 2489
+substring$ -- 1270
+swap$ -- 2570
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 360
+type$ -- 369
 warning$ -- 1
-while$ -- 183
+while$ -- 187
 width$ -- 0
-write$ -- 567
+write$ -- 581
 (There were 2 error messages)
