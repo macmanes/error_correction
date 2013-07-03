@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  3 JUL 2013 08:20
+This is XeTeX, Version 3.1415926-2.4-0.9998 (TeX Live 2012) (format=xelatex 2012.6.30)  3 JUL 2013 08:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -557,6 +557,6 @@ Here is how much of TeX's memory you used:
  11138 multiletter control sequences out of 15000+200000
  10729 words of font info for 38 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 30i,7n,32p,1345b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,7n,32p,1384b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on error.corr_PeerJ.pdf (21 pages).
